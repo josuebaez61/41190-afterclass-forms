@@ -4,8 +4,8 @@
     <div class="card-body">
       <h5 class="card-title">Formulario</h5>
 
-      <form [formGroup]="estudianteForm" class="w-50">
-        <div class="row g-3">
+      <form [formGroup]="estudianteForm" class="row">
+        <div class="col-6 row g-3">
           <div class="col">
             <input formControlName="nombre" type="text" class="form-control" placeholder="First name" aria-label="First name">
           </div>
@@ -13,8 +13,12 @@
             <input formControlName="apellido" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
           </div>
           <div class="col-12">
-            <input formControlName="email" type="email" class="form-control" placeholder="Email" aria-label="Email">
+            <input [formControl]="emailControl" type="email" class="form-control" placeholder="Email" aria-label="Email">
           </div>
+        </div>
+
+        <div class="col-6">
+          <pre>{{ estudianteForm.value | json }}</pre>
         </div>
       </form>
 
