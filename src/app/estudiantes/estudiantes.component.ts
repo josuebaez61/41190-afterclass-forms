@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-estudiantes',
@@ -8,6 +8,15 @@ import { FormGroup } from '@angular/forms';
 })
 export class EstudiantesComponent {
 
-  estudianteForm: FormGroup = new FormGroup({});
+  estudianteForm: FormGroup;
 
+  nombreControl = new FormControl('Nombre example');
+  apellidoControl = new FormControl('Example Apellido');
+
+  constructor() {
+    this.estudianteForm = new FormGroup({
+      nombre: this.nombreControl,
+      apellido: this.apellidoControl,
+    });
+  }
 }

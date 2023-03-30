@@ -7,10 +7,10 @@
       <form [formGroup]="estudianteForm" class="w-50">
         <div class="row g-3">
           <div class="col">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+            <input formControlName="nombre" type="text" class="form-control" placeholder="First name" aria-label="First name">
           </div>
           <div class="col">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            <input formControlName="apellido" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
           </div>
           <div class="col-12">
             <input type="email" class="form-control" placeholder="Email" aria-label="Email">
