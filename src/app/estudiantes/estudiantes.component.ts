@@ -12,11 +12,13 @@ export class EstudiantesComponent {
 
   nombreControl = new FormControl('Nombre example');
   apellidoControl = new FormControl('Example Apellido');
+  emailControl = new FormControl('example@email.com');
 
   constructor() {
     this.estudianteForm = new FormGroup({
       nombre: this.nombreControl,
       apellido: this.apellidoControl,
+      email: this.emailControl,
     });
   }
 }
