@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="card-title">Formulario</h5>
 
-      <div class="w-50">
+      <form [formGroup]="estudianteForm" class="w-50">
         <div class="row g-3">
           <div class="col">
             <input type="text" class="form-control" placeholder="First name" aria-label="First name">
@@ -16,7 +16,7 @@
             <input type="email" class="form-control" placeholder="Email" aria-label="Email">
           </div>
         </div>
-      </div>
+      </form>
 
 
     </div>
