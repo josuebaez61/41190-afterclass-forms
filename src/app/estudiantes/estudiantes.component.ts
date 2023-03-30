@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-estudiantes',
@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./estudiantes.component.css']
 })
 export class EstudiantesComponent {
+
+  estudiantes: any[] = [];
 
   estudianteForm: FormGroup;
 
@@ -16,12 +18,20 @@ export class EstudiantesComponent {
     [
       Validators.required,
       Validators.minLength(3),
+      this.noHomeroValidator(),
     ]
   );
 
 
-  apellidoControl = new FormControl('Example Apellido');
-  emailControl = new FormControl('example@email.com');
+  apellidoControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+
+  emailControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
 
   constructor() {
     this.estudianteForm = new FormGroup({
@@ -32,13 +42,23 @@ export class EstudiantesComponent {
   }
 
   onSubmit(): void {
-
     if (this.estudianteForm.valid) {
-      console.log(this.estudianteForm.value)
+      this.estudiantes.push(this.estudianteForm.value);
+      this.estudianteForm.reset();
     } else {
-      alert('No es valido');
+      this.estudianteForm.markAllAsTouched()
     }
+  }
 
-    // console.log(this.estudianteForm.value);
+
+  noHomeroValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (control.value?.toLowerCase().includes('homero')) {
+        return {
+          noHomero: true
+        }
+      }
+      return null;
+    }
   }
 }

@@ -1,60 +1,81 @@
 <main class="container-fluid">
-
   <section class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">Formulario</h5>
 
       <form [formGroup]="estudianteForm" (ngSubmit)="onSubmit()" class="row">
         <div class="col-6 row g-3">
-
-
-
           <div class="col">
             <input
               formControlName="nombre"
               type="text"
-              [class.is-invalid]="nombreControl.invalid && nombreControl.touched"
+              [class.is-invalid]="
+                nombreControl.invalid && nombreControl.touched
+              "
               class="form-control"
               placeholder="First name"
               aria-label="First name"
-            >
-            <div class="invalid-feedback">
+            />
+            <app-form-error-helper
+              *ngIf="nombreControl.invalid && nombreControl.touched"
+              [formErrors]="nombreControl.errors"
+            ></app-form-error-helper>
+            <!-- <div *ngIf="nombreControl.hasError('required')" class="invalid-feedback">
               Es requerido
             </div>
+            <div *ngIf="nombreControl.hasError('minlength')" class="invalid-feedback">
+              El largo esperado es de 3 caracteres
+            </div> -->
           </div>
-
-
 
           <div class="col">
-            <input formControlName="apellido" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            <input
+              [class.is-invalid]="
+                apellidoControl.invalid && apellidoControl.touched
+              "
+              formControlName="apellido"
+              type="text"
+              class="form-control"
+              placeholder="Last name"
+              aria-label="Last name"
+            />
+            <app-form-error-helper
+              *ngIf="apellidoControl.invalid && apellidoControl.touched"
+              [formErrors]="apellidoControl.errors"
+            ></app-form-error-helper>
           </div>
           <div class="col-12">
-            <input [formControl]="emailControl" type="email" class="form-control" placeholder="Email" aria-label="Email">
+            <input
+              [class.is-invalid]="emailControl.invalid && emailControl.touched"
+              [formControl]="emailControl"
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              aria-label="Email"
+            />
+            <app-form-error-helper
+              *ngIf="emailControl.invalid && emailControl.touched"
+              [formErrors]="emailControl.errors"
+            ></app-form-error-helper>
           </div>
         </div>
         <div class="col-6">
           <pre>{{ estudianteForm.value | json }}</pre>
+
+          <p>Errores del control de nombre</p>
+          <pre>{{ nombreControl.errors | json }}</pre>
         </div>
         <div class="col-12 mt-3">
           <button class="btn btn-primary" type="submit">Registrar</button>
         </div>
       </form>
-
-
     </div>
   </section>
-
-
-
-
-
-
-
-
 
   <section class="card">
     <div class="card-body">
       <h5 class="card-title">Listado</h5>
+      <pre>{{ estudiantes | json }}</pre>
     </div>
   </section>
 </main>

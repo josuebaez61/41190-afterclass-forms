@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EstudiantesComponent } from './estudiantes.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormErrorHelperModule } from '../shared/components/form-error-helper/form-error-helper.module';
 
 
 
@@ -12,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormErrorHelperModule
   ],
   exports: [
     EstudiantesComponent

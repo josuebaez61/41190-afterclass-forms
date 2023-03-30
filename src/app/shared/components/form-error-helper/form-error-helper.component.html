@@ -1,0 +1,19 @@
+
+<div *ngFor="let error of formErrors | keyvalue">
+  <!-- {{ error | json }} -->
+  <ng-container [ngSwitch]="error.key">
+    <small class="text-danger" *ngSwitchCase="'required'">
+      Este campo es requerido
+    </small>
+    <small class="text-danger" *ngSwitchCase="'minlength'">
+      Debe tener al menos {{ error.value['requiredLength'] }} caracteres
+    </small>
+    <small class="text-danger" *ngSwitchCase="'noHomero'">
+      No se admiten homeros
+    </small>
+    <small class="text-danger" *ngSwitchCase="'email'">
+      No es un email valido
+    </small>
+    <small  class="text-danger" *ngSwitchDefault>Error desconocido</small>
+  </ng-container>
+</div>
