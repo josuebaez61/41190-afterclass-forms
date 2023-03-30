@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-estudiantes',
@@ -10,7 +10,16 @@ export class EstudiantesComponent {
 
   estudianteForm: FormGroup;
 
-  nombreControl = new FormControl('Nombre example');
+  // NOMBRE CONTROL
+  nombreControl = new FormControl(
+    '',
+    [
+      Validators.required,
+      Validators.minLength(3),
+    ]
+  );
+
+
   apellidoControl = new FormControl('Example Apellido');
   emailControl = new FormControl('example@email.com');
 
@@ -20,5 +29,16 @@ export class EstudiantesComponent {
       apellido: this.apellidoControl,
       email: this.emailControl,
     });
+  }
+
+  onSubmit(): void {
+
+    if (this.estudianteForm.valid) {
+      console.log(this.estudianteForm.value)
+    } else {
+      alert('No es valido');
+    }
+
+    // console.log(this.estudianteForm.value);
   }
 }

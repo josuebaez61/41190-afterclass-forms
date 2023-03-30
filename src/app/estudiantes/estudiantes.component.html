@@ -4,11 +4,27 @@
     <div class="card-body">
       <h5 class="card-title">Formulario</h5>
 
-      <form [formGroup]="estudianteForm" class="row">
+      <form [formGroup]="estudianteForm" (ngSubmit)="onSubmit()" class="row">
         <div class="col-6 row g-3">
+
+
+
           <div class="col">
-            <input formControlName="nombre" type="text" class="form-control" placeholder="First name" aria-label="First name">
+            <input
+              formControlName="nombre"
+              type="text"
+              [class.is-invalid]="nombreControl.invalid && nombreControl.touched"
+              class="form-control"
+              placeholder="First name"
+              aria-label="First name"
+            >
+            <div class="invalid-feedback">
+              Es requerido
+            </div>
           </div>
+
+
+
           <div class="col">
             <input formControlName="apellido" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
           </div>
@@ -16,9 +32,11 @@
             <input [formControl]="emailControl" type="email" class="form-control" placeholder="Email" aria-label="Email">
           </div>
         </div>
-
         <div class="col-6">
           <pre>{{ estudianteForm.value | json }}</pre>
+        </div>
+        <div class="col-12 mt-3">
+          <button class="btn btn-primary" type="submit">Registrar</button>
         </div>
       </form>
 
